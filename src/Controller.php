@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App;
 
+use PDO;
+
+require_once("src/Database.php");
 require_once("src/View.php");
 
 class Controller
@@ -11,11 +14,20 @@ class Controller
     
     private const DEFAULT_ACTION = 'list';
 
+    private static array $configutation = [];
+
     private array $request;
     private View $view;
+
+    public static function initConfiguration(array $configutation): void 
+    {
+      self::$configutation = $configutation;
+    }
     
     public function __construct(array $request)
     {
+        $db = new Database(self::$configutation['db']);
+
         $this->request = $request;
         $this->view = new View();
     }
