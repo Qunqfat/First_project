@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App;
 
-use PDO;
+require_once("src/Exception/ConfigurationException.php");
 
-require_once("src/Database.php");
-require_once("src/View.php");
+use App\Exception\ConfigurationException;
+
+
+require_once("Database.php");
+require_once("View.php");
 
 class Controller
 {
@@ -26,6 +29,10 @@ class Controller
     
     public function __construct(array $request)
     {
+      if (empty(self::$configutation['db']))
+      {
+        throw new ConfigurationException('configuration error');
+      }
         $db = new Database(self::$configutation['db']);
 
         $this->request = $request;
