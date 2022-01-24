@@ -27,7 +27,7 @@
     </div>
 
     <div class="footer">
-      <p>Notatki - projekt w kursie PHP</p>
+      <p><strong>Notatki - projekt by Andrzej Konfitura</strong></p>
     </div>
   </div>
 </body>
